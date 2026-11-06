@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "labelprep"
+version = "0.1.0"
+description = "Prepare detection datasets: cut videos into frames, convert YOLO <-> COCO, and split train/val without leaking frames of the same video."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["Pillow>=9.0"]
+
+[project.optional-dependencies]
+video = ["opencv-python-headless>=4.5"]
+test = ["pytest>=7", "opencv-python-headless>=4.5"]
+
+[project.scripts]
+labelprep = "labelprep.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
